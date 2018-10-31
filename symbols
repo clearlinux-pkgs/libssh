@@ -233,6 +233,8 @@ libssh.so.4:ssh_get_serverbanner
 libssh.so.4:ssh_get_status
 libssh.so.4:ssh_get_version
 libssh.so.4:ssh_getpass
+libssh.so.4:ssh_gssapi_get_creds
+libssh.so.4:ssh_gssapi_set_creds
 libssh.so.4:ssh_handle_key_exchange
 libssh.so.4:ssh_init
 libssh.so.4:ssh_is_blocking
