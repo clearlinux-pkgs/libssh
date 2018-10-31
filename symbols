@@ -182,6 +182,7 @@ libssh.so.4:ssh_get_disconnect_message
 libssh.so.4:ssh_get_error
 libssh.so.4:ssh_get_error_code
 libssh.so.4:ssh_get_fd
+libssh.so.4:ssh_get_fingerprint_hash
 libssh.so.4:ssh_get_hexa
 libssh.so.4:ssh_get_hmac_in
 libssh.so.4:ssh_get_hmac_out
@@ -279,6 +280,7 @@ libssh.so.4:ssh_pki_import_privkey_file
 libssh.so.4:ssh_pki_import_pubkey_base64
 libssh.so.4:ssh_pki_import_pubkey_file
 libssh.so.4:ssh_pki_key_ecdsa_name
+libssh.so.4:ssh_print_hash
 libssh.so.4:ssh_print_hexa
 libssh.so.4:ssh_privatekey_type
 libssh.so.4:ssh_publickey_to_file
