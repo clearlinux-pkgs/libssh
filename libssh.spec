@@ -6,7 +6,7 @@
 #
 Name     : libssh
 Version  : 0.8.5
-Release  : 9
+Release  : 10
 URL      : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz
 Source0  : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz
 Source99 : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz.asc
@@ -31,14 +31,6 @@ _   _   _                          _
 (_) (_) (_)(_) _     (_)(_) (_)(_) (_)(_) _
 (_) (_) (_)   (_)  _ (_)  _ (_)    (_)   (_)
 (_) (_) (_)(_)(_) (_)(_) (_)(_)    (_)   (_).org
-
-%package abi
-Summary: abi components for the libssh package.
-Group: Default
-
-%description abi
-abi components for the libssh package.
-
 
 %package dev
 Summary: dev components for the libssh package.
@@ -75,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542402280
+export SOURCE_DATE_EPOCH=1542748433
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -83,7 +75,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542402280
+export SOURCE_DATE_EPOCH=1542748433
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp COPYING %{buildroot}/usr/share/package-licenses/libssh/COPYING
@@ -95,10 +87,6 @@ popd
 
 %files
 %defattr(-,root,root,-)
-
-%files abi
-%defattr(-,root,root,-)
-/usr/share/abi/libssh.so.4.abi
 
 %files dev
 %defattr(-,root,root,-)
