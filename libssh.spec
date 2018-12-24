@@ -5,14 +5,14 @@
 # Source0 file verified with key 0x7EE0FC4DCC014E3D (asn@samba.org)
 #
 Name     : libssh
-Version  : 0.8.5
-Release  : 10
-URL      : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz
-Source0  : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz
-Source99 : https://www.libssh.org/files/0.8/libssh-0.8.5.tar.xz.asc
+Version  : 0.8.6
+Release  : 11
+URL      : https://www.libssh.org/files/0.8/libssh-0.8.6.tar.xz
+Source0  : https://www.libssh.org/files/0.8/libssh-0.8.6.tar.xz
+Source99 : https://www.libssh.org/files/0.8/libssh-0.8.6.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : BSD-3-Clause LGPL-2.1 MIT
+License  : BSD-3-Clause MIT
 Requires: libssh-lib = %{version}-%{release}
 Requires: libssh-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
@@ -60,25 +60,24 @@ license components for the libssh package.
 
 
 %prep
-%setup -q -n libssh-0.8.5
+%setup -q -n libssh-0.8.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542748433
+export SOURCE_DATE_EPOCH=1545672061
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1542748433
+export SOURCE_DATE_EPOCH=1545672061
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
-cp COPYING %{buildroot}/usr/share/package-licenses/libssh/COPYING
 cp cmake/Modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libssh/cmake_Modules_COPYING-CMAKE-SCRIPTS
 cp doc/that_style/LICENSE %{buildroot}/usr/share/package-licenses/libssh/doc_that_style_LICENSE
 pushd clr-build
@@ -105,10 +104,9 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libssh.so.4
-/usr/lib64/libssh.so.4.7.2
+/usr/lib64/libssh.so.4.7.3
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libssh/COPYING
 /usr/share/package-licenses/libssh/cmake_Modules_COPYING-CMAKE-SCRIPTS
 /usr/share/package-licenses/libssh/doc_that_style_LICENSE
