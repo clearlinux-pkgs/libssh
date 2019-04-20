@@ -6,7 +6,7 @@
 #
 Name     : libssh
 Version  : 0.8.7
-Release  : 12
+Release  : 13
 URL      : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz
 Source0  : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz
 Source99 : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz.asc
