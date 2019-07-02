@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7EE0FC4DCC014E3D (asn@samba.org)
 #
 Name     : libssh
-Version  : 0.8.7
-Release  : 13
-URL      : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz
-Source0  : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz
-Source99 : https://www.libssh.org/files/0.8/libssh-0.8.7.tar.xz.asc
+Version  : 0.9.0
+Release  : 14
+URL      : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz
+Source0  : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz
+Source99 : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz.asc
 Summary  : Library for accessing ssh client services through C libraries
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1 MIT
@@ -38,6 +38,7 @@ Group: Development
 Requires: libssh-lib = %{version}-%{release}
 Provides: libssh-devel = %{version}-%{release}
 Requires: libssh = %{version}-%{release}
+Requires: libssh = %{version}-%{release}
 
 %description dev
 dev components for the libssh package.
@@ -61,22 +62,30 @@ license components for the libssh package.
 
 
 %prep
-%setup -q -n libssh-0.8.7
+%setup -q -n libssh-0.9.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1551106746
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562050517
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1551106746
+export SOURCE_DATE_EPOCH=1562050517
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp COPYING %{buildroot}/usr/share/package-licenses/libssh/COPYING
@@ -106,7 +115,7 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libssh.so.4
-/usr/lib64/libssh.so.4.7.4
+/usr/lib64/libssh.so.4.8.1
 
 %files license
 %defattr(0644,root,root,0755)
