@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x7EE0FC4DCC014E3D (asn@samba.org)
 #
 Name     : libssh
-Version  : 0.9.0
-Release  : 14
-URL      : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz
-Source0  : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz
-Source99 : https://www.libssh.org/files/0.9/libssh-0.9.0.tar.xz.asc
+Version  : 0.9.1
+Release  : 15
+URL      : https://www.libssh.org/files/0.9/libssh-0.9.1.tar.xz
+Source0  : https://www.libssh.org/files/0.9/libssh-0.9.1.tar.xz
+Source1 : https://www.libssh.org/files/0.9/libssh-0.9.1.tar.xz.asc
 Summary  : Library for accessing ssh client services through C libraries
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1 MIT
@@ -22,6 +22,7 @@ BuildRequires : krb5-dev
 BuildRequires : openssl-dev
 BuildRequires : pkg-config
 BuildRequires : python3
+BuildRequires : util-linux
 BuildRequires : zlib-dev
 
 %description
@@ -62,16 +63,17 @@ license components for the libssh package.
 
 
 %prep
-%setup -q -n libssh-0.9.0
+%setup -q -n libssh-0.9.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562050517
+export SOURCE_DATE_EPOCH=1572103681
 mkdir -p clr-build
 pushd clr-build
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -81,16 +83,16 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1562050517
+export SOURCE_DATE_EPOCH=1572103681
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
-cp COPYING %{buildroot}/usr/share/package-licenses/libssh/COPYING
-cp cmake/Modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libssh/cmake_Modules_COPYING-CMAKE-SCRIPTS
-cp doc/that_style/LICENSE %{buildroot}/usr/share/package-licenses/libssh/doc_that_style_LICENSE
+cp %{_builddir}/libssh-0.9.1/COPYING %{buildroot}/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813
+cp %{_builddir}/libssh-0.9.1/cmake/Modules/COPYING-CMAKE-SCRIPTS %{buildroot}/usr/share/package-licenses/libssh/ff3ed70db4739b3c6747c7f624fe2bad70802987
+cp %{_builddir}/libssh-0.9.1/doc/that_style/LICENSE %{buildroot}/usr/share/package-licenses/libssh/86b52f0f7e15225010495c0b221b79ef0dc1a90d
 pushd clr-build
 %make_install
 popd
@@ -107,6 +109,7 @@ popd
 /usr/include/libssh/server.h
 /usr/include/libssh/sftp.h
 /usr/include/libssh/ssh2.h
+/usr/lib64/cmake/libssh/libssh-config-relwithdebinfo.cmake
 /usr/lib64/cmake/libssh/libssh-config-version.cmake
 /usr/lib64/cmake/libssh/libssh-config.cmake
 /usr/lib64/libssh.so
@@ -115,10 +118,10 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libssh.so.4
-/usr/lib64/libssh.so.4.8.1
+/usr/lib64/libssh.so.4.8.2
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libssh/COPYING
-/usr/share/package-licenses/libssh/cmake_Modules_COPYING-CMAKE-SCRIPTS
-/usr/share/package-licenses/libssh/doc_that_style_LICENSE
+/usr/share/package-licenses/libssh/86b52f0f7e15225010495c0b221b79ef0dc1a90d
+/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813
+/usr/share/package-licenses/libssh/ff3ed70db4739b3c6747c7f624fe2bad70802987
