@@ -6,7 +6,7 @@
 #
 Name     : libssh
 Version  : 0.9.4
-Release  : 18
+Release  : 19
 URL      : https://www.libssh.org/files/0.9/libssh-0.9.4.tar.xz
 Source0  : https://www.libssh.org/files/0.9/libssh-0.9.4.tar.xz
 Source1  : https://www.libssh.org/files/0.9/libssh-0.9.4.tar.xz.asc
@@ -23,6 +23,7 @@ BuildRequires : openssl-dev
 BuildRequires : pkg-config
 BuildRequires : python3
 BuildRequires : zlib-dev
+Patch1: CVE-2020-16135.patch
 
 %description
 _   _   _                          _
@@ -62,29 +63,31 @@ license components for the libssh package.
 
 %prep
 %setup -q -n libssh-0.9.4
+cd %{_builddir}/libssh-0.9.4
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1586447541
+export SOURCE_DATE_EPOCH=1596502794
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 -fstack-protector-strong -mzero-caller-saved-regs=used "
 %cmake ..
-make  %{?_smp_mflags}  VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1586447541
+export SOURCE_DATE_EPOCH=1596502794
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp %{_builddir}/libssh-0.9.4/COPYING %{buildroot}/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813
