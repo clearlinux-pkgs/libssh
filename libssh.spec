@@ -6,7 +6,7 @@
 #
 Name     : libssh
 Version  : 0.9.5
-Release  : 20
+Release  : 21
 URL      : https://www.libssh.org/files/0.9/libssh-0.9.5.tar.xz
 Source0  : https://www.libssh.org/files/0.9/libssh-0.9.5.tar.xz
 Source1  : https://www.libssh.org/files/0.9/libssh-0.9.5.tar.xz.asc
