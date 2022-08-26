@@ -1,5 +1,33 @@
-ChangeLog
-==========
+CHANGELOG
+=========
+
+version 0.10.0 (released 2022-08-26)
+  * Added support for OpenSSL 3.0
+  * Added support for mbedTLS 3
+  * Added support for Smart Cards  (through openssl pkcs11 engine)
+  * Added support for chacha20-poly1305@openssh.com with libgcrypt
+  * Added support ed25519 keys in PEM files
+  * Added support for sk-ecdsa and sk-ed25519 (server side)
+  * Added support for limiting RSA key sizes and not accepting small one by
+    default
+  * Added support for ssh-agent on Windows
+  * Added ssh_userauth_publickey_auto_get_current_identity() API
+  * Added ssh_vlog() API
+  * Added ssh_send_issue_banner() API
+  * Added ssh_session_set_disconnect_message() API
+  * Added new configuration options:
+    + IdentityAgent
+    + ModuliFile
+  * Provided X11 client example
+  * Disabled DSA support at build time by default (will be removed in the next
+    release)
+  * Deprecated the SCP API!
+  * Deprecated old pubkey, privatekey API
+  * Avoided some needless large stack buffers to minimize memory footprint
+  * Removed support for OpenSSL < 1.0.1
+  * Fixed parsing username@host in login name
+  * Free global init mutex in the destructor on Windows
+  * Fixed PEM parsing in mbedtls to support both legacy and new PKCS8 formats
 
 version 0.9.6 (released 2021-08-26)
   * CVE-2021-3634: Fix possible heap-buffer overflow when rekeying with
@@ -68,7 +96,7 @@ version 0.9.1 (released 2019-10-25)
   * Fixed deprecation issues (T165)
   * Fixed known_hosts directory creation (T166)
 
-version 0.9.0 (released 2019-06-28)
+version 0.9.0 (released 2019-02-xx)
   * Added support for AES-GCM
   * Added improved rekeying support
   * Added performance improvements
@@ -82,71 +110,6 @@ version 0.9.0 (released 2019-06-28)
   * Improved known_hosts parsing
   * Improved documentation
   * Improved OpenSSL API usage for KEX, DH, and signatures
-
-version 0.8.7 (released 2019-02-25)
-  * Fixed handling extension flags in the server implementation
-  * Fixed exporting ed25519 private keys
-  * Fixed corner cases for rsa-sha2 signatures
-  * Fixed some issues with connector
-
-version 0.8.6 (released 2018-12-24)
-  * Fixed compilation issues with different OpenSSL versions
-  * Fixed StrictHostKeyChecking in new knownhosts API
-  * Fixed ssh_send_keepalive() with packet filter
-  * Fixed possible crash with knownhosts options
-  * Fixed issus with rekeying
-  * Fixed strong ECDSA keys
-  * Fixed some issues with rsa-sha2 extentions
-  * Fixed access violation in ssh_init() (static linking)
-  * Fixed ssh_channel_close() handling
-
-version 0.8.5 (released 2018-10-29)
-  * Added support to get known_hosts locations with ssh_options_get()
-  * Fixed preferred algorithm for known hosts negotiations
-  * Fixed KEX with some server implementations (e.g. Cisco)
-  * Fixed issues with MSVC
-  * Fixed keyboard-interactive auth in server mode
-    (regression from CVE-2018-10933)
-  * Fixed gssapi auth in server mode (regression from CVE-2018-10933)
-  * Fixed socket fd handling with proxy command
-  * Fixed a memory leak with OpenSSL
-
-version 0.8.4 (released 2018-10-16)
-  * Fixed CVE-2018-10933
-  * Fixed building without globbing support
-  * Fixed possible memory leaks
-  * Avoid SIGPIPE on sockets
-
-version 0.8.3 (released 2018-09-21)
-  * Added support for rsa-sha2
-  * Added support to parse private keys in openssh container format
-    (other than ed25519)
-  * Added support for diffie-hellman-group18-sha512 and
-    diffie-hellman-group16-sha512
-  * Added ssh_get_fingerprint_hash()
-  * Added ssh_pki_export_privkey_base64()
-  * Added support for Match keyword in config file
-  * Improved performance and reduced memory footprint for sftp
-  * Fixed ecdsa publickey auth
-  * Fixed reading a closed channel
-  * Added support to announce posix-rename@openssh.com and
-    hardlink@openssh.com in the sftp server
-
-version 0.8.2 (released 2018-08-30)
-  * Added sha256 fingerprints for pubkeys
-  * Improved compiler flag detection
-  * Fixed race condition in reading sftp messages
-  * Fixed doxygen generation and added modern style
-  * Fixed library initialization on Windows
-  * Fixed __bounded__ attribute detection
-  * Fixed a bug in the options parser
-  * Fixed documentation for new knwon_hosts API
-
-version 0.8.1 (released 2018-08-13)
-  * Fixed version number in the header
-  * Fixed version number in pkg-config and cmake config
-  * Fixed library initialization
-  * Fixed attribute detection
 
 version 0.8.0 (released 2018-08-10)
   * Removed support for deprecated SSHv1 protocol
@@ -490,14 +453,6 @@ version 0.3.1 (released 2009-07-14)
   * Fixed a possible crash bug.
   * Fixed build warnings.
   * Fixed cmake on BSD.
-version 0.3.1 (released 2009-07-14)
-  * Added return code SSH_SERVER_FILE_NOT_FOUND.
-  * Fixed compilation of SSHv1.
-  * Fixed several memory leaks.
-  * Fixed possible infinite loops.
-  * Fixed a possible crash bug.
-  * Fixed build warnings.
-  * Fixed cmake on BSD.
 
 version 0.3 (released 2009-05-21)
   * Added support for ssh-agent authentication.
@@ -539,7 +494,7 @@ version 0.2 (released 2007-11-29)
 version 0.11-dev
   * Server implementation development.
   * Small bug corrected when connecting to sun ssh servers.
-  * Channel wierdness corrected (writing huge data packets)
+  * Channel weirdness corrected (writing huge data packets)
   * Channel_read_nonblocking added
   * Channel bug where stderr wasn't correctly read fixed.
   * Added sftp_file_set_nonblocking(), which is nonblocking SFTP IO
