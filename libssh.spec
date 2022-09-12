@@ -6,7 +6,7 @@
 #
 Name     : libssh
 Version  : 0.10.4
-Release  : 30
+Release  : 31
 URL      : https://www.libssh.org/files/0.10/libssh-0.10.4.tar.xz
 Source0  : https://www.libssh.org/files/0.10/libssh-0.10.4.tar.xz
 Source1  : https://www.libssh.org/files/0.10/libssh-0.10.4.tar.xz.asc
