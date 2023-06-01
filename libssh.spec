@@ -7,7 +7,7 @@
 #
 Name     : libssh
 Version  : 0.10.5
-Release  : 34
+Release  : 35
 URL      : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz
 Source0  : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz
 Source1  : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz.asc
@@ -73,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685636420
+export SOURCE_DATE_EPOCH=1685645094
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -106,7 +106,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1685636420
+export SOURCE_DATE_EPOCH=1685645094
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp %{_builddir}/libssh-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813 || :
