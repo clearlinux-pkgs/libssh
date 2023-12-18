@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x7EE0FC4DCC014E3D (asn@samba.org)
 #
 Name     : libssh
-Version  : 0.10.5
-Release  : 36
-URL      : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz
-Source0  : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz
-Source1  : https://www.libssh.org/files/0.10/libssh-0.10.5.tar.xz.asc
+Version  : 0.10.6
+Release  : 37
+URL      : https://www.libssh.org/files/0.10/libssh-0.10.6.tar.xz
+Source0  : https://www.libssh.org/files/0.10/libssh-0.10.6.tar.xz
+Source1  : https://www.libssh.org/files/0.10/libssh-0.10.6.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-3-Clause LGPL-2.1 MIT
@@ -67,15 +67,15 @@ license components for the libssh package.
 
 
 %prep
-%setup -q -n libssh-0.10.5
-cd %{_builddir}/libssh-0.10.5
+%setup -q -n libssh-0.10.6
+cd %{_builddir}/libssh-0.10.6
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1702023941
+export SOURCE_DATE_EPOCH=1702927949
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -134,7 +134,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1702023941
+export SOURCE_DATE_EPOCH=1702927949
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp %{_builddir}/libssh-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813 || :
@@ -169,9 +169,9 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libssh.so.4.9.5
+/V3/usr/lib64/libssh.so.4.9.6
 /usr/lib64/libssh.so.4
-/usr/lib64/libssh.so.4.9.5
+/usr/lib64/libssh.so.4.9.6
 
 %files license
 %defattr(0644,root,root,0755)
