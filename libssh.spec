@@ -8,11 +8,11 @@
 # Source0 file verified with key 0x03D5DF8CFDD3E8E7 (libssh@libssh.org)
 #
 Name     : libssh
-Version  : 0.11.0
-Release  : 39
-URL      : https://www.libssh.org/files/0.11/libssh-0.11.0.tar.xz
-Source0  : https://www.libssh.org/files/0.11/libssh-0.11.0.tar.xz
-Source1  : https://www.libssh.org/files/0.11/libssh-0.11.0.tar.xz.asc
+Version  : 0.11.1
+Release  : 40
+URL      : https://www.libssh.org/files/0.11/libssh-0.11.1.tar.xz
+Source0  : https://www.libssh.org/files/0.11/libssh-0.11.1.tar.xz
+Source1  : https://www.libssh.org/files/0.11/libssh-0.11.1.tar.xz.asc
 Source2  : 03D5DF8CFDD3E8E7.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -75,10 +75,10 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) 03D5DF8CFDD3E8E7' gpg.status
-%setup -q -n libssh-0.11.0
-cd %{_builddir}/libssh-0.11.0
+%setup -q -n libssh-0.11.1
+cd %{_builddir}/libssh-0.11.1
 pushd ..
-cp -a libssh-0.11.0 buildavx2
+cp -a libssh-0.11.1 buildavx2
 popd
 
 %build
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1724167583
+export SOURCE_DATE_EPOCH=1725303335
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -149,7 +149,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1724167583
+export SOURCE_DATE_EPOCH=1725303335
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libssh
 cp %{_builddir}/libssh-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libssh/daf9314932a8dd8b2617371575b6ad49aa51e813 || :
@@ -190,9 +190,9 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libssh.so.4.10.0
+/V3/usr/lib64/libssh.so.4.10.1
 /usr/lib64/libssh.so.4
-/usr/lib64/libssh.so.4.10.0
+/usr/lib64/libssh.so.4.10.1
 
 %files license
 %defattr(0644,root,root,0755)
